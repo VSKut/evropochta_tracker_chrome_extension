@@ -6,17 +6,14 @@
         <span class="status">{{ statusFormatted }}</span> <span class="number">{{ record.number }}</span>
       </div>
       <div style="clear: both"></div>
-      <div class="created">Добавлен: <span class="date">{{ createdAtFormatted }}</span></div>
-      <div style="clear: both"></div>
+<!--      <div class="created">Добавлен: <span class="date">{{ createdAtFormatted }}</span></div>-->
+<!--      <div style="clear: both"></div>-->
 
       <div class="info" v-if="record.history.length">
         <div class="updated">Обновлён: <span class="date">{{ record.history[0].date }}</span></div>
         <div style="clear: both"></div>
         <hr>
-        <div class="main">{{ record.history[0].info.main }}</div>
-        <hr>
-        <div class="additional">{{ record.history[0].info.additional }}</div>
-        <div style="clear: both"></div>
+        <div class="main">{{ lastHistory }}</div>
       </div>
     </div>
   </div>
@@ -28,7 +25,9 @@ import {mapActions} from "vuex";
 export default {
   props: ['record'],
   data () {
-    return {}
+    return {
+      full: false,
+    }
   },
   methods: {
     ...mapActions([
@@ -36,6 +35,10 @@ export default {
     ])
   },
   computed: {
+    lastHistory() {
+      const lastHistory = this.record.history[0].info.main;
+      return this.full || lastHistory.length < 150 ? lastHistory : lastHistory.slice(0, 150).trim() + '...'
+    },
     createdAtFormatted() {
       let day = this.record.createdAt.getDay()
       let month = this.record.createdAt.getMonth()+1
@@ -142,6 +145,7 @@ export default {
     }
 
     hr {
+      border-top: rgba(0, 0, 0, 0.45);
       margin: 5px 10%;
     }
   }
