@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="record" @click="showFull = true" @mouseover="full = true" @mouseleave="hide">
-      <button style="float: left" @click="refreshHistoryByNumber(record.number)">Обновить</button>
+      <button style="float: left" @click.stop="refreshHistoryByNumber(record.number)">Обновить</button>
       <div class="title">
         <span class="status">{{ statusFormatted }}</span> <span class="number">{{ record.number }}</span>
       </div>
