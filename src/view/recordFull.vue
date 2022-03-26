@@ -39,12 +39,14 @@ export default {
   bottom: 0;
   left: 0;
   z-index: 99;
-  background-color:  rgba(0, 0, 0, 0.2);
+  background-color:  rgba(0, 0, 0, 0.5);
   display: flex;
   align-items: center;
   justify-content: center;
 
   .popup-inner {
+    border: 3px solid rgba(50, 50, 50, 0.75);
+    border-radius: 5px;
     background-color: #fff;
     padding: 8px;
 

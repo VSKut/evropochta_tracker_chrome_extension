@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div class="record" @click="showFull = true" @mouseover="full = true" @mouseleave="hide">
-      <button style="float: left" @click.stop="refreshHistoryByNumber(record.number)">Обновить</button>
+    <div class="record" @click="showFull = true" @mouseover="show" @mouseleave="hide">
+      <button style="float: left" @click.stop="refreshHistory(record.number)">Обновить</button>
       <div class="title">
         <span class="status">{{ statusFormatted }}</span> <span class="number">{{ record.number }}</span>
       </div>
@@ -11,7 +11,7 @@
         <div style="clear: both"></div>
         <hr>
         <div class="main">{{ lastHistory }}</div>
-        <template v-if="full">
+        <template v-if="descriptionFull">
           <hr>
           <div class="additional">{{ record.history[0].info.additional }}</div>
           <div style="clear: both"></div>
@@ -23,6 +23,7 @@
 </template>
 
 <script>
+import _ from 'lodash'
 import {mapActions} from "vuex";
 import recordFull from "@/view/recordFull";
 
@@ -30,7 +31,8 @@ export default {
   props: ['record'],
   data () {
     return {
-      full: false,
+      descriptionFull: false,
+      hovering: false,
       showFull: false
     }
   },
@@ -38,16 +40,24 @@ export default {
     ...mapActions([
       'refreshHistoryByNumber'
     ]),
+    refreshHistory: _.throttle(function (number) {
+      this.refreshHistoryByNumber(number)
+    }, 1000),
+    show() {
+      this.hovering = true;
+      setTimeout(() => this.descriptionFull = this.hovering, 300);
+    },
     hide() {
       setTimeout(()=> {
-        this.full = false
-      }, 300);
+        this.descriptionFull = false
+        this.hovering = false;
+      }, 500);
     },
   },
   computed: {
     lastHistory() {
       const lastHistory = this.record.history[0].info.main;
-      return this.full || lastHistory.length < 150 ? lastHistory : lastHistory.slice(0, 150).trim() + '...'
+      return this.descriptionFull || lastHistory.length < 150 ? lastHistory : lastHistory.slice(0, 150).trim() + '...'
     },
     createdAtFormatted() {
       let day = this.record.createdAt.getDay()
