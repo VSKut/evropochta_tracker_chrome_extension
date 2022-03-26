@@ -6,14 +6,16 @@
         <span class="status">{{ statusFormatted }}</span> <span class="number">{{ record.number }}</span>
       </div>
       <div style="clear: both"></div>
-<!--      <div class="created">Добавлен: <span class="date">{{ createdAtFormatted }}</span></div>-->
-<!--      <div style="clear: both"></div>-->
-
       <div class="info" v-if="record.history.length">
         <div class="updated">Обновлён: <span class="date">{{ record.history[0].date }}</span></div>
         <div style="clear: both"></div>
         <hr>
-        <div class="main">{{ lastHistory }}</div>
+        <div class="main" @mouseover="full = true" @mouseleave="full = false">{{ lastHistory }}</div>
+        <template v-if="full">
+          <hr>
+          <div class="additional">{{ record.history[0].info.additional }}</div>
+          <div style="clear: both"></div>
+        </template>
       </div>
     </div>
   </div>
