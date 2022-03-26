@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="record" @mouseover="full = true" @mouseleave="hide">
+    <div class="record" @click="showFull = true" @mouseover="full = true" @mouseleave="hide">
       <button style="float: left" @click="refreshHistoryByNumber(record.number)">Обновить</button>
       <div class="title">
         <span class="status">{{ statusFormatted }}</span> <span class="number">{{ record.number }}</span>
@@ -18,17 +18,20 @@
         </template>
       </div>
     </div>
+    <record-full @close="showFull = false" v-if="showFull" :record="record" />
   </div>
 </template>
 
 <script>
 import {mapActions} from "vuex";
+import recordFull from "@/view/recordFull";
 
 export default {
   props: ['record'],
   data () {
     return {
       full: false,
+      showFull: false
     }
   },
   methods: {
@@ -39,7 +42,7 @@ export default {
       setTimeout(()=> {
         this.full = false
       }, 300);
-    }
+    },
   },
   computed: {
     lastHistory() {
@@ -75,6 +78,9 @@ export default {
           return this.record.status;
       }
     }
+  },
+  components: {
+    recordFull
   }
 }
 
