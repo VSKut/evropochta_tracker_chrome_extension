@@ -1,14 +1,23 @@
 <template>
   <div>
     <div class="record">
+      <button style="float: left" @click="refreshHistoryByNumber(record.number)">Обновить</button>
       <div class="title">
         <span class="status">{{ statusFormatted }}</span> <span class="number">{{ record.number }}</span>
       </div>
-      <div style="clear: both;"></div>
+      <div style="clear: both"></div>
       <div class="created">Добавлен: <span class="date">{{ createdAtFormatted }}</span></div>
-      <div style="clear: both;"></div>
+      <div style="clear: both"></div>
 
-      <button @click="refreshHistoryByNumber(record.number)">refresh</button>
+      <div class="info" v-if="record.history.length">
+        <div class="updated">Обновлён: <span class="date">{{ record.history[0].date }}</span></div>
+        <div style="clear: both"></div>
+        <hr>
+        <div class="main">{{ record.history[0].info.main }}</div>
+        <hr>
+        <div class="additional">{{ record.history[0].info.additional }}</div>
+        <div style="clear: both"></div>
+      </div>
     </div>
   </div>
 </template>
@@ -73,34 +82,68 @@ export default {
     border: 1px solid rgba(220, 220, 220, 0.8);
     background-color: rgba(220, 220, 220, 0.4);
   }
-}
-.title {
-  float: right;
 
-  .status {
-    font-size: 10px;
+
+  .title {
+    float: right;
+
+    .status {
+      font-size: 10px;
+      font-weight: 600;
+      color: rgba(103, 103, 103, 0.6);
+      text-transform: uppercase;
+    }
+
+    .number {
+      font-weight: 800;
+      font-size: 16px;
+    }
+  }
+
+  .created {
     font-weight: 600;
-    color: rgba(103, 103, 103, 0.6);
-    text-transform: uppercase;
+    font-size: 13px;
+    color: rgba(97, 97, 97, 0.8);
+    float: right;
+
+    .date {
+      font-size: 12px;
+      font-weight: 400;
+      color: rgba(103, 103, 103, 0.8);
+    }
   }
 
-  .number {
-    font-weight: 800;
-    font-size: 16px;
-  }
+  .info {
+    .updated {
+      font-weight: 600;
+      font-size: 13px;
+      color: rgba(97, 97, 97, 0.8);
+      float: right;
 
-}
+      .date {
+        font-size: 12px;
+        font-weight: 400;
+        color: rgba(103, 103, 103, 0.8);
+      }
+    }
 
-.created {
-  font-weight: 600;
-  font-size: 13px;
-  color: rgba(97, 97, 97, 0.8);
-  float: right;
+    .main {
+      font-size: 13px;
+      color: rgba(0, 0, 0, 0.65);
+    }
 
-  .date {
-    font-size: 12px;
-    font-weight: 400;
-    color: rgba(103, 103, 103, 0.8);
+    .additional {
+      font-size: 11px;
+      font-weight: 400;
+      color: rgba(0, 0, 0, 0.5);
+      text-align: right;
+      max-width: 70%;
+      float: right;
+    }
+
+    hr {
+      margin: 5px 10%;
+    }
   }
 }
 </style>

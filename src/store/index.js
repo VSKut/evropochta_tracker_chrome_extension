@@ -8,14 +8,14 @@ export default createStore({
         createdAt: new Date(Date.now()),
         updatedAt: null,
         status: 'new',
-        logs: []
+        history: []
       },
       {
         number: 'BY080011146531',
         createdAt: new Date(Date.now()),
         updatedAt: null,
         status: 'onTheWay',
-        logs: []
+        history: []
       },
     ]
   },
@@ -36,12 +36,22 @@ export default createStore({
       const result = await fetch(`https://evropochta.by/api/track.json/?number=${record.number}`)
           .then(data => data.json())
           .then(data => data.data)
+          .then(data => data.map(data => {
+            return {
+              date: data.Timex,
+              info: {
+                main: data.InfoTrack,
+                additional: data.Info,
+              },
+              check: {
+                from: data.CheckxFrom,
+                to: data.CheckxTo,
+              }
+            }
+          }))
 
-      // record.logs = record.logs.concat(result)
-
-      // loop over arr2, add the elements of array2 if it doesn't exist in array1
-      record.logs = record.logs.reduce((acc, arr2) => {
-        if (result.findIndex(arr1 => arr1.Timex === arr2.Timex && arr1.Info === arr2.Info) === -1) {
+      record.history = record.history.reduce((acc, arr2) => {
+        if (result.findIndex(arr1 => arr1.date === arr2.date && arr1.info.main === arr2.info.main && arr1.info.additional === arr2.info.additional) === -1) {
           acc.push(arr2)
         }
         return acc
