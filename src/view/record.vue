@@ -7,15 +7,24 @@
       <div style="clear: both;"></div>
       <div class="created">Добавлен: <span class="date">{{ createdAtFormatted }}</span></div>
       <div style="clear: both;"></div>
+
+      <button @click="refreshHistoryByNumber(record.number)">refresh</button>
     </div>
   </div>
 </template>
 
 <script>
+import {mapActions} from "vuex";
+
 export default {
   props: ['record'],
   data () {
     return {}
+  },
+  methods: {
+    ...mapActions([
+      'refreshHistoryByNumber'
+    ])
   },
   computed: {
     createdAtFormatted() {
