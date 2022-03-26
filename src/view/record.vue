@@ -2,7 +2,7 @@
   <div>
     <div class="record">
       <div class="title">
-        {{ record.number }}
+        <span class="status">{{ statusFormatted }}</span> <span class="number">{{ record.number }}</span>
       </div>
       <div style="clear: both;"></div>
       <div class="created">Добавлен: <span class="date">{{ createdAtFormatted }}</span></div>
@@ -30,6 +30,22 @@ export default {
       minute = minute < 10 ? `0${minute}` : minute
 
       return `${day}.${month}.${year} ${hour}:${minute}`
+    },
+    statusFormatted() {
+      switch (this.record.status) {
+        case 'new':
+          return 'Новый';
+        case 'onTheWay':
+          return 'В пути';
+        case 'readyToPickUp':
+          return 'Готов к выдаче';
+        case 'delivered':
+          return 'Выдан';
+        case 'invalid':
+          return 'Нет информации';
+        default:
+          return this.record.status;
+      }
     }
   }
 }
@@ -50,9 +66,20 @@ export default {
   }
 }
 .title {
-  font-weight: 800;
-  font-size: 16px;
   float: right;
+
+  .status {
+    font-size: 10px;
+    font-weight: 600;
+    color: rgba(103, 103, 103, 0.6);
+    text-transform: uppercase;
+  }
+
+  .number {
+    font-weight: 800;
+    font-size: 16px;
+  }
+
 }
 
 .created {

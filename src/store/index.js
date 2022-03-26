@@ -6,11 +6,13 @@ export default createStore({
       {
         number: 'BY080011089552',
         createdAt: new Date(Date.now()),
+        status: 'new',
         logs: []
       },
       {
         number: 'BY080011146531',
         createdAt: new Date(Date.now()),
+        status: 'onTheWay',
         logs: []
       },
     ]
