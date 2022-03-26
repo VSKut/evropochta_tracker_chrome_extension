@@ -5,8 +5,7 @@ const fs = require('fs')
 const pages = {}
 
 function getEntryFile (entryPath) {
-  let files = fs.readdirSync(entryPath)
-  return files
+  return fs.readdirSync(entryPath)
 }
 
 const chromeName = getEntryFile(path.resolve(`src/entry`))
