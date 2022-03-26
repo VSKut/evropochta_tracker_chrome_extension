@@ -8,16 +8,12 @@
 </template>
 
 <script>
-// BY080011089552
-// BY080011146531
 import record from "@/view/record";
 import {mapGetters} from "vuex";
 
 export default {
   data () {
-    return {
-      msg: 'popup from !!!'
-    }
+    return {}
   },
   components: {
     record
@@ -40,7 +36,7 @@ export default {
   color: rgb(31, 85, 154);
 
   width: 400px;
-  height: 500px;
+  max-height: 500px;
   overflow-y: scroll;
 
   h1 {

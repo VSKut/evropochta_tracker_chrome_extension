@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="record" @mouseover="full = true" @mouseleave="full = false">
+    <div class="record" @mouseover="full = true" @mouseleave="hide">
       <button style="float: left" @click="refreshHistoryByNumber(record.number)">Обновить</button>
       <div class="title">
         <span class="status">{{ statusFormatted }}</span> <span class="number">{{ record.number }}</span>
@@ -34,7 +34,12 @@ export default {
   methods: {
     ...mapActions([
       'refreshHistoryByNumber'
-    ])
+    ]),
+    hide() {
+      setTimeout(()=> {
+        this.full = false
+      }, 300);
+    }
   },
   computed: {
     lastHistory() {
