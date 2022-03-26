@@ -46,7 +46,8 @@ export default {
 
   .popup-inner {
     border: 3px solid rgba(50, 50, 50, 0.75);
-    border-radius: 5px;
+    border-bottom: none;
+    border-radius: 5px 5px 0 0;
     background-color: #fff;
     padding: 8px;
 
