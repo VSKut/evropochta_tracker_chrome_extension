@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="record">
+    <div class="record" @mouseover="full = true" @mouseleave="full = false">
       <button style="float: left" @click="refreshHistoryByNumber(record.number)">Обновить</button>
       <div class="title">
         <span class="status">{{ statusFormatted }}</span> <span class="number">{{ record.number }}</span>
@@ -10,7 +10,7 @@
         <div class="updated">Обновлён: <span class="date">{{ record.history[0].date }}</span></div>
         <div style="clear: both"></div>
         <hr>
-        <div class="main" @mouseover="full = true" @mouseleave="full = false">{{ lastHistory }}</div>
+        <div class="main">{{ lastHistory }}</div>
         <template v-if="full">
           <hr>
           <div class="additional">{{ record.history[0].info.additional }}</div>

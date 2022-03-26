@@ -40,6 +40,8 @@ export default {
   color: rgb(31, 85, 154);
 
   width: 400px;
+  height: 500px;
+  overflow-y: scroll;
 
   h1 {
     margin: 5px 0 10px 0;
