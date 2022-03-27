@@ -45,8 +45,7 @@ export default {
   justify-content: center;
 
   .popup-inner {
-    border: 3px solid rgba(50, 50, 50, 0.75);
-    border-bottom: none;
+    border-top: 3px solid rgba(50, 50, 50, 0.75);
     border-radius: 5px 5px 0 0;
     background-color: #fff;
     padding: 8px;
