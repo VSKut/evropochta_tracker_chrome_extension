@@ -83,7 +83,7 @@ export default {
         case 'delivered':
           return 'Выдан';
         case 'invalid':
-          return 'Нет информации';
+          return 'Неправильный трек-номер';
         default:
           return this.record.status;
       }

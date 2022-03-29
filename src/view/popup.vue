@@ -1,24 +1,30 @@
 <template>
   <div class="main_app">
     <h1>Ваши номера:</h1>
-    <button class="add">+</button>
+    <button class="add" @click="showAdd = true">+</button>
     <div class="records_list">
       <div v-if="records.length === 0" class="empty">Трэк номера отсутствуют.</div>
       <record v-for="(record, index) in records" :record="record" :index="index" :key="record.number"></record>
     </div>
+
+    <record-add @close="showAdd = false" v-if="showAdd" />
   </div>
 </template>
 
 <script>
 import record from "@/view/record";
+import recordAdd from "@/view/recordAdd";
 import {mapGetters} from "vuex";
 
 export default {
   data () {
-    return {}
+    return {
+      showAdd: false
+    }
   },
   components: {
-    record
+    record,
+    recordAdd
   },
   computed: {
     ...mapGetters({
@@ -35,20 +41,20 @@ body {
 </style>
 
 <style lang="scss" scoped>
-.main_app:before {
-  content: ' ';
-  display: block;
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0.25;
-  background-image: url('../assets/svg.svg');
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: 30%;
-  }
+//.main_app:before {
+//  content: ' ';
+//  display: block;
+//  position: absolute;
+//  left: 0;
+//  top: 0;
+//  width: 100%;
+//  height: 100%;
+//  opacity: 0.25;
+//  background-image: url('../assets/svg.svg');
+//  background-repeat: no-repeat;
+//  background-position: center center;
+//  background-size: 30%;
+//  }
 .main_app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
