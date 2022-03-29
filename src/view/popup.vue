@@ -35,6 +35,20 @@ body {
 </style>
 
 <style lang="scss" scoped>
+.main_app:before {
+  content: ' ';
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.25;
+  background-image: url('../assets/svg.svg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 30%;
+  }
 .main_app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -43,6 +57,7 @@ body {
   color: rgb(31, 85, 154);
 
   width: 400px;
+  min-height: 480px;
   max-height: 640px;
   overflow-y: scroll;
   position: relative;
