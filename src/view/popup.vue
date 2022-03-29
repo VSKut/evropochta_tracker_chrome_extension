@@ -36,7 +36,7 @@ export default {
   color: rgb(31, 85, 154);
 
   width: 400px;
-  max-height: 500px;
+  max-height: 640px;
   overflow-y: scroll;
 
   h1 {

@@ -5,66 +5,11 @@ const vuexLocal = new VuexPersistence({
   storage: window.localStorage
 })
 
+// BY080011089552
+// BY080011146531
 export default createStore({
   state: {
-    list: [
-      {
-        number: 'BY080011089552',
-        createdAt: new Date(Date.now()),
-        updatedAt: null,
-        status: 'new',
-        history: []
-      },
-      {
-        number: 'BY080011146531',
-        createdAt: new Date(Date.now()),
-        updatedAt: null,
-        status: 'onTheWay',
-        history: []
-      },
-      {
-        number: 'BY080011089552',
-        createdAt: new Date(Date.now()),
-        updatedAt: null,
-        status: 'new',
-        history: []
-      },
-      {
-        number: 'BY080011146531',
-        createdAt: new Date(Date.now()),
-        updatedAt: null,
-        status: 'onTheWay',
-        history: []
-      },
-      {
-        number: 'BY080011089552',
-        createdAt: new Date(Date.now()),
-        updatedAt: null,
-        status: 'new',
-        history: []
-      },
-      {
-        number: 'BY080011146531',
-        createdAt: new Date(Date.now()),
-        updatedAt: null,
-        status: 'onTheWay',
-        history: []
-      },
-      {
-        number: 'BY080011089552',
-        createdAt: new Date(Date.now()),
-        updatedAt: null,
-        status: 'new',
-        history: []
-      },
-      {
-        number: 'BY080011146531',
-        createdAt: new Date(Date.now()),
-        updatedAt: null,
-        status: 'onTheWay',
-        history: []
-      },
-    ]
+    list: []
   },
   getters: {
     getList (state) {

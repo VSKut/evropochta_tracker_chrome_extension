@@ -2,7 +2,9 @@
   <div class="popup" @click.self.prevent="$emit('close')">
     <div class="popup-inner">
       <div class="record">
-        {{ record.number }} <button class="close" @click="$emit('close')">X</button>
+        <span class="number">{{ record.number }}</span>
+        <button class="close" @click="$emit('close')">X</button>
+        <div style="clear: both"></div>
         <div class="history">
           <record-history v-for="(history, index) in record.history" :history="history" :index="index" :key="history.date"></record-history>
         </div>
@@ -55,6 +57,34 @@ export default {
     min-height: 60%;
     max-height: 90%;
     overflow-y: scroll;
+
+    .record {
+      .number {
+        font-size: 20px;
+        font-weight: 800;
+        color: rgba(0, 0, 0, 0.6);
+      }
+      .close {
+        float: right;
+        border-radius: 20px;
+        border: 1px solid rgba(0, 0, 0, 0.35);
+        color: rgba(0, 0, 0, 0.5);
+        cursor: pointer;
+        padding: 5px 10px;
+        background-color: rgba(200, 200, 200, 0.25);
+
+        &:hover {
+          border: 1px solid rgba(0, 0, 0, 0.75);
+          color: rgba(0, 0, 0, 0.75);
+          background-color: rgba(200, 200, 200, 0.1);
+          font-weight: 600;
+        }
+      }
+
+      .history {
+        margin-top: 20px;
+      }
+    }
   }
 }
 </style>
